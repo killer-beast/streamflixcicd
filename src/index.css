@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Streaming Platform Design System - Cinematic Dark Theme */
+
+@layer base {
+  :root {
+    /* Core streaming colors - Dark theme optimized */
+    --background: 220 13% 9%;
+    --background-secondary: 220 13% 12%;
+    --background-tertiary: 220 13% 15%;
+    --foreground: 210 40% 98%;
+
+    /* Card system with glass morphism */
+    --card: 220 13% 12%;
+    --card-glass: 220 13% 15% / 0.8;
+    --card-foreground: 210 40% 98%;
+
+    /* Streaming brand colors */
+    --primary: 0 84% 58%;
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 0 84% 68%;
+
+    /* Netflix-inspired accent */
+    --accent: 14 89% 55%;
+    --accent-foreground: 210 40% 98%;
+    --accent-glow: 14 89% 65%;
+
+    /* Subtle secondary colors */
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted elements */
+    --muted: 220 13% 20%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    /* Interactive elements */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Borders and inputs with glass effect */
+    --border: 220 13% 25%;
+    --border-glass: 220 13% 35% / 0.3;
+    --input: 220 13% 18%;
+    --ring: 0 84% 58%;
+
+    /* Gradients for cinematic effects */
+    --gradient-hero: linear-gradient(135deg, hsl(220 13% 9%), hsl(0 84% 58% / 0.1));
+    --gradient-card: linear-gradient(145deg, hsl(220 13% 15% / 0.8), hsl(220 13% 12% / 0.9));
+    --gradient-primary: linear-gradient(135deg, hsl(0 84% 58%), hsl(14 89% 55%));
+    --gradient-overlay: linear-gradient(0deg, hsl(220 13% 9% / 0.8), transparent);
+
+    /* Shadows with glow effects */
+    --shadow-glow: 0 0 40px hsl(0 84% 58% / 0.3);
+    --shadow-card: 0 8px 32px hsl(220 13% 9% / 0.4);
+    --shadow-elevated: 0 16px 64px hsl(220 13% 9% / 0.6);
+
+    /* Animation variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* Scrollbar styling for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--border));
+  }
+}
+
+@layer components {
+  /* Glass morphism effect */
+  .glass {
+    background: hsl(var(--card-glass));
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border-glass));
+  }
+
+  /* Movie card hover animations */
+  .movie-card {
+    @apply transition-all duration-300 ease-out hover:scale-105 hover:z-10;
+    @apply shadow-lg hover:shadow-elevated;
+  }
+
+  .movie-card:hover {
+    box-shadow: var(--shadow-elevated), var(--shadow-glow);
+  }
+
+  /* Gradient text effect */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hero banner with overlay */
+  .hero-banner {
+    background: var(--gradient-hero);
+    position: relative;
+  }
+
+  .hero-banner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: var(--gradient-overlay);
+    pointer-events: none;
+  }
+
+  /* Smooth scroll behavior */
+  .scroll-container {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Glow button effect */
+  .glow-button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glow-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .glow-button:hover::before {
+    left: 100%;
+  }
+}
